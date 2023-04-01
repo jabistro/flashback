@@ -9,6 +9,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getPost, getPostsBySearch } from "../../../actions/posts";
+import CommentSection from "./CommentSection";
 import useStyles from "./styles";
 
 const PostDetails = () => {
@@ -20,7 +21,7 @@ const PostDetails = () => {
 
   useEffect(() => {
     dispatch(getPost(id));
-  }, [id]);
+  }, [dispatch, id]);
 
   useEffect(() => {
     if (post) {
@@ -28,7 +29,7 @@ const PostDetails = () => {
         getPostsBySearch({ search: "none", tags: post?.tags.join(",") })
       );
     }
-  }, [post]);
+  }, [dispatch, post]);
 
   if (!post) return null;
 
@@ -67,13 +68,11 @@ const PostDetails = () => {
             {moment(post?.createdAt).fromNow()}
           </Typography>
           <Divider style={{ margin: "20px 0" }} />
-          <Typography variant="body1">
+          {/* <Typography variant="body1">
             <strong>Realtime Chat - coming soon!</strong>
           </Typography>
-          <Divider style={{ margin: "20px 0" }} />
-          <Typography variant="body1">
-            <strong>Comments - coming soon!</strong>
-          </Typography>
+          <Divider style={{ margin: "20px 0" }} /> */}
+          <CommentSection post={post} />
           <Divider style={{ margin: "20px 0" }} />
         </div>
         <div className={classes.imageSection}>
@@ -83,7 +82,7 @@ const PostDetails = () => {
               post?.selectedFile ||
               "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
             }
-            alt={post?.title}
+            alt=""
           />
         </div>
       </div>
@@ -113,7 +112,7 @@ const PostDetails = () => {
                   <Typography gutterBottom variant="subtitle1">
                     Likes: {likes.length}
                   </Typography>
-                  <img src={selectedFile} width="200px" />
+                  <img src={selectedFile} width="200px" alt="" />
                 </div>
               )
             )}

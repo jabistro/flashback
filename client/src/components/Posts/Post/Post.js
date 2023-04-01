@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardActions,
@@ -20,9 +20,23 @@ import { useHistory } from "react-router-dom";
 
 const Post = ({ post, setCurrentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
+  const [likes, setLikes] = useState(post?.likes);
   const dispatch = useDispatch();
   const classes = useStyles();
   const history = useHistory();
+  const userId = user?.result?.googleId || user?.result?._id;
+
+  const hasLikedPost = post?.likes?.find((like) => like === userId);
+
+  const handleLike = async () => {
+    dispatch(likePost(post?._id));
+
+    if (hasLikedPost) {
+      setLikes(post?.likes?.filter((id) => id !== userId));
+    } else {
+      setLikes([...post?.likes, userId]);
+    }
+  };
 
   const openPost = () => history.push(`/posts/${post._id}`);
 
@@ -82,9 +96,9 @@ const Post = ({ post, setCurrentId }) => {
           size="small"
           color="primary"
           disabled={!user?.result}
-          onClick={() => dispatch(likePost(post?._id))}
+          onClick={handleLike}
         >
-          <Likes post={post} />
+          <Likes likes={likes} />
         </Button>
         {(user?.result?.googleId === post?.creator ||
           user?.result?._id === post?.creator) && (
