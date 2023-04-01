@@ -10,9 +10,8 @@ import {
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-// eslint-disable-next-line
 import ChipInput from "material-ui-chip-input";
-import { getPosts, getPostsBySearch } from "../../actions/posts";
+import { getPostsBySearch } from "../../actions/posts";
 import Form from "../Form/Form";
 import Posts from "../Posts/Posts";
 
@@ -29,7 +28,6 @@ const Home = () => {
   const query = useQuery();
   const history = useHistory();
   const page = query.get("page") || 1;
-  // eslint-disable-next-line
   const searchQuery = query.get("searchQuery");
   const classes = useStyles();
   const [search, setSearch] = useState("");
