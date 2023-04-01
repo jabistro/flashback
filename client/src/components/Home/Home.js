@@ -88,7 +88,7 @@ const Home = () => {
                 value={tags}
                 onAdd={handleAdd}
                 onDelete={handleDelete}
-                label="Search Tags (hit enter after typing tag)"
+                label="Search Tags (type tag, hit enter)"
                 variant="outlined"
               />
               <Button
@@ -96,6 +96,7 @@ const Home = () => {
                 className={classes.searchButton}
                 color="primary"
                 variant="contained"
+                sx={{ color: "#370037" }}
               >
                 Search
               </Button>
