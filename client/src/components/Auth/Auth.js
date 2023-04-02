@@ -64,7 +64,7 @@ const Auth = () => {
       });
     }
     gapi?.load("client:auth2", start);
-  }, [start]);
+  });
 
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
