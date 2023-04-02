@@ -24,7 +24,7 @@ export const getPosts = async (req, res) => {
       numberOfPages: Math.ceil(total / LIMIT),
     });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    res.status(404).json({ message: error.message });
   }
 };
 
@@ -40,7 +40,7 @@ export const getPostsBySearch = async (req, res) => {
 
     res.json({ data: posts });
   } catch (error) {
-    res.status(401).json({ message: error.message });
+    res.status(404).json({ message: error.message });
   }
 };
 
@@ -52,7 +52,7 @@ export const getPost = async (req, res) => {
 
     res.status(200).json(post);
   } catch (error) {
-    res.status(402).json({ message: error.message });
+    res.status(404).json({ message: error.message });
   }
 };
 
@@ -70,7 +70,7 @@ export const createPost = async (req, res) => {
 
     res.status(201).json(newPostMessage);
   } catch (error) {
-    res.status(403).json({ message: error.message });
+    res.status(409).json({ message: error.message });
   }
 };
 
@@ -92,7 +92,7 @@ export const deletePost = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(405).send(`No post with id: ${id}`);
+    return res.status(404).send(`No post with id: ${id}`);
 
   await PostMessage.findByIdAndRemove(id);
 
@@ -105,7 +105,7 @@ export const likePost = async (req, res) => {
   if (!req.userId) return res.json({ message: "Unauthenticated" });
 
   if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(406).send(`No post with id: ${id}`);
+    return res.status(404).send(`No post with id: ${id}`);
 
   const post = await PostMessage.findById(id);
 
