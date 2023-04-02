@@ -58,13 +58,13 @@ const Auth = () => {
 
   useEffect(() => {
     function start() {
-      gapi.auth2.init({
+      gapi?.auth2?.init({
         client_id:
           "569673910025-bv446nlajq9c7cqfmjsb2o3fmbu4t2dc.apps.googleusercontent.com",
       });
     }
-    gapi.load("client:auth2", start);
-  });
+    gapi?.load("client:auth2", start);
+  }, [start]);
 
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
@@ -78,7 +78,8 @@ const Auth = () => {
     }
   };
 
-  const googleError = () => console.log("Google sign in was unsuccessful. Try again later.");
+  const googleError = () =>
+    console.log("Google sign in was unsuccessful. Try again later.");
 
   return (
     <Container className="main" maxWidth="xs">
