@@ -58,12 +58,12 @@ const Auth = () => {
 
   useEffect(() => {
     function start() {
-      gapi?.auth2?.init({
+      gapi.auth2.init({
         client_id:
           "569673910025-bv446nlajq9c7cqfmjsb2o3fmbu4t2dc.apps.googleusercontent.com",
       });
     }
-    gapi?.load("client:auth2", start);
+    gapi.load("client:auth2", start);
   });
 
   const googleSuccess = async (res) => {
