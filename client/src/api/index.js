@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://flashback-backend.herokuapp.com/",
+  baseURL: "https://flashback-backend.onrender.com",
 });
 
 API.interceptors.request.use((req) => {
