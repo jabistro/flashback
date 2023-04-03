@@ -21,16 +21,16 @@ app.get("/", (req, res) => {
   res.send("APP IS RUNNING.");
 });
 
-app.get("/*", function (req, res) {
-  res.sendFile(
-    path.join(__dirname, "../client/public/index.html"),
-    function (err) {
-      if (err) {
-        res.status(500).send(err);
-      }
-    }
-  );
-});
+// app.get("/*", function (req, res) {
+//   res.sendFile(
+//     path.join(__dirname, "../client/public/index.html"),
+//     function (err) {
+//       if (err) {
+//         res.status(500).send(err);
+//       }
+//     }
+//   );
+// });
 
 const PORT = process.env.PORT || 5000;
 
