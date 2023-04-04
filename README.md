@@ -2,7 +2,7 @@
 
 <p align="center">Flashback is a full-responsive app that allows users to share pictures and comments of things they find memorable. Several features such as email and google authentication, pagination, search and filtering capabilities, comments, and full CRUD on flashbacks.</p>
 
-<a align="center" href="https://flashback-frontend.onrender.com">Flashback Live Demo</a>
+<p align="center"><a href="https://flashback-frontend.onrender.com">Flashback Live Demo</a></p>
 
 ![image](https://user-images.githubusercontent.com/97556168/229916625-4f099ac1-b658-44b4-86a2-5841d93ebb08.png)
 
