@@ -45,6 +45,28 @@ const PostDetails = () => {
 
   const openPost = (_id) => history.push(`/posts/${_id}`);
 
+  function shuffle(array) {
+    let currentIndex = array.length,
+      randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex !== 0) {
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
+  }
+
+  const shuffledPosts = shuffle(recommendedPosts);
+
   return (
     <Paper style={{ padding: "20px", borderRadius: "15px" }} elevation={6}>
       <div className={classes.card}>
@@ -93,8 +115,9 @@ const PostDetails = () => {
           </Typography>
           <Divider />
           <div className={classes.recommendedPosts}>
-            {recommendedPosts.map(
-              ({ title, message, name, likes, selectedFile, _id }) => (
+            {shuffledPosts
+              .slice(0, 3)
+              .map(({ title, message, name, likes, selectedFile, _id }) => (
                 <div
                   style={{ margin: "20px", cursor: "pointer" }}
                   onClick={() => openPost(_id)}
@@ -114,8 +137,7 @@ const PostDetails = () => {
                   </Typography>
                   <img src={selectedFile} width="200px" alt="" />
                 </div>
-              )
-            )}
+              ))}
           </div>
         </div>
       )}
